@@ -1,0 +1,455 @@
+{
+    "root": [
+        {
+            "label": "대시보드",
+            "key": 1,
+            "data": "010000",
+            "children": [
+                {
+                    "label": "주요통계",
+                    "icon": "pi pi-fw pi-chart-bar",
+                    "key": 2,
+                    "data": "010100",
+                    "children": [
+                        {
+                            "label": "바우처 이용 현황",
+                            "icon": null,
+                            "key": 3,
+                            "data": "010101",
+                            "children": null
+                        },
+                        {
+                            "label": "디아스타 이용 현황",
+                            "icon": null,
+                            "key": 4,
+                            "data": "010102",
+                            "children": null
+                        },
+                        {
+                            "label": "회원 통계",
+                            "icon": null,
+                            "key": 5,
+                            "data": "010103",
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "label": "회원 통계",
+                    "icon": "pi pi-fw pi-users",
+                    "key": 6,
+                    "data": "010200",
+                    "children": [
+                        {
+                            "label": "가입자",
+                            "icon": null,
+                            "key": 7,
+                            "data": "010201",
+                            "children": null
+                        },
+                        {
+                            "label": "KYC 현황",
+                            "icon": null,
+                            "key": 8,
+                            "data": "010202",
+                            "children": null
+                        },
+                        {
+                            "label": "국적별",
+                            "icon": null,
+                            "key": 9,
+                            "data": "010203",
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "label": "자산 통계",
+                    "icon": "pi pi-fw pi-money-bill",
+                    "key": 10,
+                    "data": "010300",
+                    "children": [
+                        {
+                            "label": "코인별 회원자산",
+                            "icon": null,
+                            "key": 11,
+                            "data": "010301",
+                            "children": null
+                        },
+                        {
+                            "label": "관리자 자산",
+                            "icon": null,
+                            "key": 12,
+                            "data": "010302",
+                            "children": null
+                        },
+                        {
+                            "label": "코인별 회원 & 관리자 자산대비",
+                            "icon": null,
+                            "key": 13,
+                            "data": "010303",
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "label": "회원관리",
+            "icon": null,
+            "key": 14,
+            "data": "020000",
+            "children": [
+                {
+                    "label": "회원 정보",
+                    "icon": "pi pi-fw pi-user",
+                    "key": 15,
+                    "data": "020100",
+                    "children": []
+                },
+                {
+                    "label": "회원 인증",
+                    "icon": "pi pi-fw pi-id-card",
+                    "key": 16,
+                    "data": "020200",
+                    "children": [
+                        {
+                            "label": "NICE 본인인증",
+                            "icon": null,
+                            "key": 17,
+                            "data": "020201",
+                            "children": null
+                        },
+                        {
+                            "label": "USEB 비대면 인증",
+                            "icon": null,
+                            "key": 18,
+                            "data": "020202",
+                            "children": null
+                        },
+                        {
+                            "label": "1원 계좌 인증",
+                            "icon": null,
+                            "key": 19,
+                            "data": "020203",
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "label": "추가수집 서류",
+                    "icon": "pi pi-fw pi-paperclip",
+                    "key": 27,
+                    "data": "020300",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "label": "코인관리",
+            "icon": null,
+            "key": 20,
+            "data": "030000",
+            "children": [
+                {
+                    "label": "코인 설정",
+                    "icon": "pi pi-fw pi-cog",
+                    "key": 21,
+                    "data": "030100",
+                    "children": []
+                },
+                {
+                    "label": "코인 시세",
+                    "icon": "pi pi-fw pi-sliders-v",
+                    "key": 22,
+                    "data": "030200",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "label": "자산관리",
+            "icon": null,
+            "key": 23,
+            "data": "040000",
+            "children": [
+                {
+                    "label": "입금기록",
+                    "icon": "pi pi-fw pi-download",
+                    "key": 24,
+                    "data": "040100",
+                    "children": []
+                },
+                {
+                    "label": "출금관리",
+                    "icon": "pi pi-fw pi-upload",
+                    "key": 25,
+                    "data": "040200",
+                    "children": []
+                },
+                {
+                    "label": "트랜잭션 기록",
+                    "icon": "pi pi-fw pi-book",
+                    "key": 26,
+                    "data": "040300",
+                    "children": []
+                },
+                {
+                    "label": "운영 월렛 관리",
+                    "icon": "pi pi-fw pi-wallet",
+                    "key": 28,
+                    "data": "040400",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "label": "운영관리",
+            "icon": null,
+            "key": 29,
+            "data": "050000",
+            "children": [
+                {
+                    "label": "PUSH 메시지 전송관리",
+                    "icon": "pi pi-fw pi-comments",
+                    "key": 30,
+                    "data": "050100",
+                    "children": [
+                        {
+                            "label": "템플릿",
+                            "icon": null,
+                            "key": 31,
+                            "data": "050101",
+                            "children": null
+                        },
+                        {
+                            "label": "전송내역",
+                            "icon": null,
+                            "key": 32,
+                            "data": "050102",
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "label": "Email 전송 관리",
+                    "icon": "pi pi-fw pi-envelope",
+                    "key": 33,
+                    "data": "050200",
+                    "children": [
+                        {
+                            "label": "템플릿",
+                            "icon": null,
+                            "key": 34,
+                            "data": "050201",
+                            "children": null
+                        },
+                        {
+                            "label": "전송내역",
+                            "icon": null,
+                            "key": 35,
+                            "data": "050202",
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "label": "팝업 관리",
+                    "icon": "pi pi-fw pi-external-link",
+                    "key": 36,
+                    "data": "050300",
+                    "children": []
+                },
+                {
+                    "label": "공지 관리",
+                    "icon": "pi pi-fw pi-align-left",
+                    "key": 37,
+                    "data": "050400",
+                    "children": []
+                },
+                {
+                    "label": "배너 관리",
+                    "icon": "pi pi-fw pi-bookmark-fill",
+                    "key": 38,
+                    "data": "050500",
+                    "children": []
+                },
+                {
+                    "label": "이벤트 관리",
+                    "icon": "pi pi-fw pi-star-fill",
+                    "key": 39,
+                    "data": "050600",
+                    "children": [
+                        {
+                            "label": "추천인",
+                            "icon": null,
+                            "key": 40,
+                            "data": "050601",
+                            "children": null
+                        },
+                        {
+                            "label": "에어드랍",
+                            "icon": null,
+                            "key": 41,
+                            "data": "050602",
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "label": "CS관리",
+                    "icon": "pi pi-fw pi-cog",
+                    "key": 42,
+                    "data": "050700",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "label": "바우처",
+            "icon": null,
+            "key": 43,
+            "data": "060000",
+            "children": [
+                {
+                    "label": "바우처 현황",
+                    "icon": "pi pi-fw pi-tags",
+                    "key": 44,
+                    "data": "060100",
+                    "children": []
+                },
+                {
+                    "label": "일대사",
+                    "icon": "pi pi-fw pi-sliders-v",
+                    "key": 45,
+                    "data": "060200",
+                    "children": [
+                        {
+                            "label": "구매내역",
+                            "icon": null,
+                            "key": 46,
+                            "data": "060201",
+                            "children": null
+                        },
+                        {
+                            "label": "데이터 갱신 내역",
+                            "icon": null,
+                            "key": 47,
+                            "data": "060202",
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "label": "유효기간 만료",
+                    "icon": "pi pi-fw pi-filter-slash",
+                    "key": 48,
+                    "data": "060300",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "label": "지갑관리",
+            "icon": null,
+            "key": 49,
+            "data": "070000",
+            "children": [
+                {
+                    "label": "탈중앙지갑",
+                    "icon": "pi pi-fw pi-share-alt",
+                    "key": 50,
+                    "data": "070100",
+                    "children": [
+                        {
+                            "label": "메인넷 관리",
+                            "icon": null,
+                            "key": 51,
+                            "data": "070101",
+                            "children": null
+                        },
+                        {
+                            "label": "코인 관리",
+                            "icon": null,
+                            "key": 52,
+                            "data": "070102",
+                            "children": null
+                        },
+                        {
+                            "label": "DAPP 관리",
+                            "icon": null,
+                            "key": 53,
+                            "data": "070103",
+                            "children": null
+                        },
+                        {
+                            "label": "계정 관리",
+                            "icon": null,
+                            "key": 54,
+                            "data": "070104",
+                            "children": null
+                        }
+                    ]
+                },
+                {
+                    "label": "공동지갑",
+                    "icon": "pi pi-fw pi-wallet",
+                    "key": 55,
+                    "data": "070200",
+                    "children": []
+                }
+            ]
+        },
+        {
+            "label": "시스템설정",
+            "icon": null,
+            "key": 56,
+            "data": "080000",
+            "children": [
+                {
+                    "label": "사이트 관리",
+                    "icon": "pi pi-fw pi-list",
+                    "key": 57,
+                    "data": "080100",
+                    "children": []
+                },
+                {
+                    "label": "관리자",
+                    "icon": "pi pi-fw pi-user-edit",
+                    "key": 58,
+                    "data": "080200",
+                    "children": [
+                        {
+                            "label": "관리자 계정 관리",
+                            "icon": null,
+                            "key": 59,
+                            "data": "080201",
+                            "children": null
+                        },
+                        {
+                            "label": "Access IP 내역",
+                            "icon": null,
+                            "key": 60,
+                            "data": "080202",
+                            "children": null
+                        },
+                        {
+                            "label": "반출 승인 내역",
+                            "icon": null,
+                            "key": 61,
+                            "data": "080203",
+                            "children": null
+                        },
+                        {
+                            "label": "관리자 로그",
+                            "icon": null,
+                            "key": 62,
+                            "data": "080204",
+                            "children": null
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
