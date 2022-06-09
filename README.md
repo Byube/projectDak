@@ -40,11 +40,11 @@ npm run serve
 │  ├─assets                       - 공통, css, 이미지
 │  ├─common                       - 프로젝트 공통
 │  │ └─contants.js                - 상수 파일
-│  ├─components
-│  │  ├─dialogs                   - 공통 및 특정 다이아로그 컴포넌트
+│  ├─components                   - 공통 사용 컴포넌트
+│  │  ├─copy                      - 클립보드 복사 컴포넌트
+│  │  ├─input                     - input태그 컴포넌트
 │  │  ├─popup                     - 팝업 컴포넌트
-│  │  └─tables
-│  │      └─header                - 공통 TableHeader
+│  │  └─table                     - 테이블 컴포넌트
 │  ├─router                       - 화면이동 파일
 │  ├─store                        - vuex 모듈
 │  │  └─modules
@@ -54,20 +54,19 @@ npm run serve
 │  │    ├─header                  - 화면 상단
 │  │    │  └─sideNav              - 화면 메뉴트리
 │  │    ├─main                    - 메인화면
-
-│  │    │  └─SignIn.vue           - 로그인 화면
 │  │    └─themes                  - 테마변경
 │  ├─App.vue                      - 메인 vue
 │  ├─index.css                    - tailwindcss
 │  └─main.js                      - 메인 랜더
 │
 ├─ .env.development               - 개발 환경변수
-├─ .env.product                   - 운영 환경변수
+├─ .env.production                - 운영 환경변수
+├─ .eslintrc.js                   - javascript 문법을 검토해주는 도구
+├─ babel.config.js                - ES6+ 버전 이상의 JavaScript, JSX, TypeScript 코드를 하위 버전의 JavaScript 문법으로 변환
 ├─ index.html                     - vue 랜더링 탬플릿
 ├─ package-lock.json              - npm 패키지간 의존성 설정
 ├─ package.json                   - npm 설정
 ├─ postcss.config.js              - post css 설정
-├─ tailwind.config.js             - tailwind css 설정
 ├─ vite.config.js                 - vite 설정
 └─ README.md                      - readme
 
