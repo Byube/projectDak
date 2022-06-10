@@ -7,11 +7,11 @@
 <script>
 import SideNav from "@/views/header/sideNav/SideNav.vue";
 import AppTopbar from "@/views/header/sideNav/AppTopbar.vue";
-import { activeClassName, saveMenuList, menuOnClick} from "@/common/sideNavService.js";
+import { activeClassName, menuOnClick} from "@/common/sideNavService.js";
 // import { ref } from "@vue/reactivity";
 
 //tmp
-// import menuList from "../../tmp/menuList.json";
+import menuList from "../../tmp/menuList.json";
 
 export default {
   components: {
@@ -66,7 +66,7 @@ export default {
     };
 
     // 메뉴바 로컬스토리지에서 호출하기
-    const { menuListData } = saveMenuList();
+    // const { menuListData } = saveMenuList();
     // const sideMenuList = ref([]);
     // const writeMenuList = async () => {
     //   const { menuListData } = await getMenuList();
@@ -76,7 +76,7 @@ export default {
 
     return {
       onMenuItemClick,
-      menu: menuListData,
+      menu: menuList.resultData,
       containerClass,
       onMenuToggle,
       onSidebarClick,

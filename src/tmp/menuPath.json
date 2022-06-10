@@ -1,0 +1,94 @@
+{
+    "resultData": [
+        {
+            "menuName": "tokenInformation",
+            "menuComponent": "TokenInformation",
+            "menuGroup": "ethereum/token",
+            "menuPath": "/ethereum/token/tokenInformation"
+        },
+        {
+            "menuName": "tokenOwner",
+            "menuComponent": "Owner",
+            "menuGroup": "ethereum/token",
+            "menuPath": "/ethereum/token/owner"
+        },
+        {
+            "menuName": "approve",
+            "menuComponent": "Approve",
+            "menuGroup": "ethereum/token",
+            "menuPath": "/ethereum/token/approve"
+        },
+        {
+            "menuName": "lockUp",
+            "menuComponent": "LockUp",
+            "menuGroup": "ethereum/token",
+            "menuPath": "/ethereum/token/lockUp"
+        },
+        {
+            "menuName": "tokenTLcontractInformation",
+            "menuComponent": "ContractInformation",
+            "menuGroup": "ethereum/tokenTimeLock",
+            "menuPath": "/ethereum/tokenTimeLock/contractInformation"
+        },
+        {
+            "menuName": "distributionOfContractTokens",
+            "menuComponent": "DistributionOfContractTokens",
+            "menuGroup": "ethereum/tokenTimeLock",
+            "menuPath": "/ethereum/tokenTimeLock/distributionOfContractTokens"
+        },
+        {
+            "menuName": "createNewContract",
+            "menuComponent": "CreateNewContract",
+            "menuGroup": "ethereum/tokenTimeLock",
+            "menuPath": "/ethereum/tokenTimeLock/createNewContract"
+        },
+        {
+            "menuName": "contractInformation",
+            "menuComponent": "ContractInformation",
+            "menuGroup": "ethereum/mainnetCoinMultiTransfer",
+            "menuPath": "/ethereum/mainnetCoinMultiTransfer/contractInformation"
+        },
+        {
+            "menuName": "mainNetOwner",
+            "menuComponent": "Owner",
+            "menuGroup": "ethereum/mainnetCoinMultiTransfer",
+            "menuPath": "/ethereum/mainnetCoinMultiTransfer/owner"
+        },
+        {
+            "menuName": "coinCharging",
+            "menuComponent": "CoinCharging",
+            "menuGroup": "ethereum/mainnetCoinMultiTransfer",
+            "menuPath": "/ethereum/mainnetCoinMultiTransfer/coinCharging"
+        },
+        {
+            "menuName": "multiTransmission",
+            "menuComponent": "MultiTransmission",
+            "menuGroup": "ethereum/mainnetCoinMultiTransfer",
+            "menuPath": "/ethereum/mainnetCoinMultiTransfer/multiTransmission"
+        },
+        {
+            "menuName": "contractinformation",
+            "menuComponent": "Contractinformation",
+            "menuGroup": "ethereum/tokenMultiTransfer",
+            "menuPath": "/ethereum/tokenMultiTransfer/contractinformation"
+        },
+        {
+            "menuName": "multiTransmissionOwner",
+            "menuComponent": "Owner",
+            "menuGroup": "ethereum/tokenMultiTransfer",
+            "menuPath": "/ethereum/tokenMultiTransfer/owner"
+        },
+        {
+            "menuName": "tmtMultiTransmission",
+            "menuComponent": "MultiTransmission",
+            "menuGroup": "ethereum/tokenMultiTransfer",
+            "menuPath": "/ethereum/tokenMultiTransfer/multiTransmission"
+        },
+        {
+            "menuName": "jeffInfomations",
+            "menuComponent": "JeffInfomation",
+            "menuGroup": "mypro/jeffkim",
+            "menuPath": "/mypro/jeffkim/information"
+        }
+    ]
+}

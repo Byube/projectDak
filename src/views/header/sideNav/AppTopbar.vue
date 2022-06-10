@@ -1,6 +1,6 @@
 <template>
   <div class="layout-topbar">
-    <router-link to="/" class="layout-topbar-logo">
+    <!-- <router-link to="/" class="layout-topbar-logo">
       <img alt="Logo" :src="topbarImage()" />
       <span>JeffKim</span>
     </router-link>
@@ -43,9 +43,9 @@
           <span>Profile</span>
         </button>
       </li>
-    </ul>
+    </ul> -->
 
-    <!-- <div class="w-2">
+    <div class="w-2">
       <div class="flex align-items-center justify-content-start">
         <span>
           <router-link to="/">
@@ -74,7 +74,6 @@
         </div>
         <div class="col-8">
           <Dropdown
-            @change="changeMainNet(mainNetList, $event)"
             :options="mainNetList"
             :modelValue="mainNetIdx"
             optionLabel="name"
@@ -93,7 +92,7 @@
           </Dropdown>
         </div>
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
@@ -112,15 +111,26 @@ export default {
       emit("menu-toggle", event);
     };
     const topbarImage = () => {
-      return dark.value
-        ? "images/logo-dark.svg"
-        : "images/logo-light.svg";
+      return dark.value ? "images/logo-dark.svg" : "images/logo-light.svg";
     };
+
+    //제거 소스
+    const mainNetIdx = ref("1");
+    const menuOnClickNow = ref("");
+    const mainNetList = ref([
+      {
+        name: "Ropsten",
+        code: "1",
+      },
+    ]);
     return {
       onMenuToggle,
       op,
       display1,
       topbarImage,
+      mainNetList,
+      mainNetIdx,
+      menuOnClickNow,
     };
   },
 };

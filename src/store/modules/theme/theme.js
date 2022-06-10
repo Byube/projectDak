@@ -2,14 +2,14 @@ export default {
     namespaced: true,
     state: {
         dark:false,
-        theme:''
+        themeNm:'/themes/ara-light-indigo/theme.css'
     },
     mutations: {
         SET_DARK(state, payload) {
             state.dark = payload;
         },
         SET_THEME(state, payload){
-            state.theme = payload
+            state.themeNm = payload
         }
     },
     actions: {

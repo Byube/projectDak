@@ -100,8 +100,9 @@ import ProgressSpinner from 'primevue/progressspinner';
 import CodeHighlight from './AppCodeHighlight';
 import BlockViewer from './BlockViewer.vue';
 
-import constant from '@/common/constant.js';
-import {writeLocalRoutes} from '@/common/dynamicRoute.js';
+// import constant from '@/common/constant.js';
+// import {writeLocalRoutes} from '@/common/dynamicRoute.js';
+import {writeRoutes} from '@/common/dynamicRoute.js';
 
 console.log(`
 %c     ██╗███████╗███████╗███████╗██╗  ██╗██╗███╗   ███╗
@@ -118,10 +119,13 @@ const app = createApp(App);
 (async () => {
 
     //새로고침시 라우터 값 체크 
-    const localRoutes = window.localStorage.getItem(constant.data.MENUPATH);
-    if (localRoutes) {
-        writeLocalRoutes();
-    }
+    // const localRoutes = window.localStorage.getItem(constant.data.MENUPATH);
+    // if (localRoutes) {
+    //     writeLocalRoutes();
+    // }
+
+    //로컬 다이렉트 연결
+    writeRoutes();
 
     // console.log('1');
     //새로고침 할때 로컬스토리지 값으로 데이터 처리 하는 부분

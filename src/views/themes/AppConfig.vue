@@ -98,14 +98,12 @@ export default {
       "mt-2",
       { "text-white-alpha-90": dark.value },
     ]);
-    const changeTheme = (event, theme, darks) => {
+    const changeTheme = (event, themes, darks) => {
       window.sessionStorage.removeItem("theme");
       window.sessionStorage.removeItem("dark");
-      console.log(">>>>>", darks);
-      console.log(">>>>>>>>>", dark.value);
-      const newValue = "/themes/" + theme + "/theme.css";
+      const newValue = "/themes/" + themes + "/theme.css";
       let themeElement = document.getElementById("dak-link");
-      changeNowTheme(theme, darks);
+      changeNowTheme(newValue, darks);
       window.sessionStorage.setItem("theme", newValue);
       window.sessionStorage.setItem("dark", darks);
       themeElement.setAttribute("href", newValue);
