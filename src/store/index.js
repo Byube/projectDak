@@ -5,7 +5,7 @@ export default createStore({
   plugins:[
     createPersistedState({
       storage:window.sessionStorage,
-      paths:['menuName','sideNav','mainNet'],
+      paths:['menuName','sideNav','theme'],
     })
   ],
   modules

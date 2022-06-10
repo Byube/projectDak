@@ -53,7 +53,7 @@
               src="@/assets/images/themes/lara-light-indigo.png"
               alt="Material Compact Light Indigo"
             />
-            <p>Light</p>
+            <p :class="themeClass">Light</p>
           </button>
         </div>
         <div class="m-5">
@@ -67,7 +67,7 @@
               src="@/assets/images/themes/lara-dark-indigo.png"
               alt="Material Dark Indigo"
             />
-            <p>Dark</p>
+            <p :class="themeClass">Dark</p>
           </button>
         </div>
       </div>
@@ -76,7 +76,8 @@
 </template>
 
 <script>
-import { getCurrentInstance } from "@vue/runtime-core";
+import { computed, getCurrentInstance } from "@vue/runtime-core";
+import { themesToggle } from "@/common/toggleTheme.js";
 
 export default {
   props: {
@@ -87,12 +88,32 @@ export default {
   },
   setup() {
     const { emit } = getCurrentInstance();
+    const { dark, changeNowTheme } = themesToggle();
     const changeLayout = (event, layoutMode) => {
       emit("layout-change", layoutMode);
       event.preventDefault();
     };
+    const themeClass = computed(() => [
+      "text-lg",
+      "mt-2",
+      { "text-white-alpha-90": dark.value },
+    ]);
+    const changeTheme = (event, theme, darks) => {
+      window.sessionStorage.removeItem("theme");
+      window.sessionStorage.removeItem("dark");
+      console.log(">>>>>", darks);
+      console.log(">>>>>>>>>", dark.value);
+      const newValue = "/themes/" + theme + "/theme.css";
+      let themeElement = document.getElementById("dak-link");
+      changeNowTheme(theme, darks);
+      window.sessionStorage.setItem("theme", newValue);
+      window.sessionStorage.setItem("dark", darks);
+      themeElement.setAttribute("href", newValue);
+    };
     return {
       changeLayout,
+      themeClass,
+      changeTheme,
     };
   },
   data() {
@@ -156,18 +177,16 @@ export default {
     applyScale() {
       document.documentElement.style.fontSize = this.scale + "px";
     },
-    changeTheme(event, theme, dark) {
-      const newValue = "/themes/" + theme + "/theme.css";
-      let themeElement = document.getElementById("dak-link");
-      window.localStorage.setItem("theme", newValue);
-      window.localStorage.setItem("dark", dark);
-      themeElement.setAttribute("href", newValue);
-      this.$appState.darkTheme = dark;
-    },
   },
   computed: {
     containerClass() {
       return ["layout-config", { "layout-config-active": this.active }];
+    },
+    rippleActive() {
+      return this.$primevue.config.ripple;
+    },
+    inputStyle() {
+      return this.$appState.inputStyle;
     },
   },
 };

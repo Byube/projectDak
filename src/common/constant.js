@@ -106,6 +106,10 @@ export default {
             FAIL: 'checkAuth/setIsLoginFail',
             SETAUTH: 'checkAuth/setIsAuthenticated',
         },
+        theme:{
+            SET_THEME:'theme/changeTheme',
+            SET_DARK:'theme/changeDarkState'
+        },
         memberInfo: {
             SETINFOLIST: 'memberInfo/getMemberInfoList',
             GETMEMBERNICELIST: 'memberInfo/getMemberNiceList',

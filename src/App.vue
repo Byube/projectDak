@@ -6,7 +6,7 @@
       <!-- <Footer /> -->
     </div>
 
-    <!-- <AppConfig :layoutMode="layoutMode" @layout-change="onLayoutChange" /> -->
+    <AppConfig :layoutMode="layoutMode" @layout-change="onLayoutChange" />
     <transition name="layout-mask">
       <div
         class="layout-mask p-component-overlay"
@@ -17,7 +17,7 @@
 </template>
 
 <script>
-// import AppConfig from "@/views/themes/AppConfig.vue";
+import AppConfig from "@/views/themes/AppConfig.vue";
 import Header from "@/views/header/Header.vue";
 // import Footer from "@/views/footer/Footer.vue";
 import Main from "@/views/main/Main.vue";
@@ -26,7 +26,7 @@ import { computed } from '@vue/runtime-core';
 export default {
   components: {
     Header,
-    // AppConfig,
+    AppConfig,
     // Footer,
     Main,
   },

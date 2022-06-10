@@ -126,8 +126,8 @@ const app = createApp(App);
     // console.log('1');
     //새로고침 할때 로컬스토리지 값으로 데이터 처리 하는 부분
     //1.테마
-    const nowTheme = window.localStorage.getItem('theme');
-    const dark = window.localStorage.getItem('dark');
+    const nowTheme = window.sessionStorage.getItem('theme');
+    const dark = window.sessionStorage.getItem('dark');
     if (nowTheme) {
         let themeElement = document.getElementById("dak-link");
         themeElement.setAttribute("href", nowTheme);

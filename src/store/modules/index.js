@@ -3,6 +3,7 @@ import menuName from './sideNav/menuName.js';
 import token from './token/token.js';
 import mainNet from './mainNet/mainNet.js';
 import dialog from './dialog/dialog.js';
+import theme from './theme/theme.js';
 
 export default {
     sideNav,
@@ -10,4 +11,5 @@ export default {
     token,
     mainNet,
     dialog,
+    theme,
 }
