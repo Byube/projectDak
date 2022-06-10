@@ -2,7 +2,7 @@
   <InputText
     :id="id"
     :modelValue="modelValue"
-    :class="[{ 'p-invalid': isError }, 'w-full']"
+    :class="[{ 'p-invalid': isError }, addClass]"
     :placeholder="placeholderInfo"
     @input="checkSelfAmount($event.target.value)"
   />
@@ -22,6 +22,10 @@ export default {
       type: String,
       default: "",
     },
+    addClass:{
+      type: String,
+      default: "",
+    }
   },
   setup(props) {
     const { emit } = getCurrentInstance();
