@@ -14,7 +14,7 @@
             flex
             justify-content-center
             align-items-center
-            w-4
+            w-6
             font-medium
             text-black-alpha-60
           "
@@ -26,6 +26,7 @@
             :addClass="myclass"
             @update:modelValue="numberValue = $event"
           />
+          <span class="ml-3">BigNumber 적용, 숫자만 입력 가능, type:String</span>
         </div>
       </div>
       <!-- 1 -->
@@ -42,10 +43,12 @@ export default {
   },
   setup() {
     const numberValue = ref("");
-    const myclass = ref('flex-1 flex ml-3 w-3 border-round text-blockchain font-medium text-black-alpha-60');
+    const myclass = ref(
+      "flex-1 flex ml-3 w-3 border-round text-blockchain font-medium text-black-alpha-60"
+    );
     return {
       numberValue,
-      myclass
+      myclass,
     };
   },
 };
