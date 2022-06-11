@@ -11,7 +11,8 @@ import { activeClassName, menuOnClick} from "@/common/sideNavService.js";
 // import { ref } from "@vue/reactivity";
 
 //tmp
-import menuList from "../../tmp/menuList.json";
+// import menuList from "../../tmp/menuList.json";
+import menuList from "../../tmp/myList.json";
 
 export default {
   components: {

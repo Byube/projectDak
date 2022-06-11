@@ -89,6 +89,18 @@
             "menuComponent": "JeffInfomation",
             "menuGroup": "mypro/jeffkim",
             "menuPath": "/mypro/jeffkim/information"
+        },
+        {
+            "menuName": "jeffProject",
+            "menuComponent": "JeffProject",
+            "menuGroup": "mypro/jeffkim",
+            "menuPath": "/mypro/jeffkim/projectList"
+        },
+        {
+            "menuName": "jeffProject1",
+            "menuComponent": "Project1",
+            "menuGroup": "mypro/project",
+            "menuPath": "/mypro/project/project1"
         }
     ]
 }
