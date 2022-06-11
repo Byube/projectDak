@@ -12,6 +12,13 @@
             "to": "/mypro/jeffkim/information",
             "headerNm": "토큰 > 토큰정보",
             "items": null
+          },
+          {
+            "label": "Owner",
+            "icon": null,
+            "to": "/mypro/jeffkim/projectList",
+            "headerNm": "토큰 > Owner",
+            "items": null
           }
         ]
       }

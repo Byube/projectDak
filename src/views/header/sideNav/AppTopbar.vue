@@ -1,6 +1,5 @@
 <template>
   <div class="layout-topbar">
-    <!-- 2 -->
     <router-link to="/" class="layout-topbar-logo">
       <img alt="Logo" :src="topbarImage()" />
       <span>JeffKim</span>
@@ -45,8 +44,7 @@
         </button>
       </li>
     </ul>
-    <!-- 1 -->
-    <!-- 2 -->
+
     <!-- <div class="w-2">
       <div class="flex align-items-center justify-content-start">
         <span>
@@ -95,7 +93,7 @@
         </div>
       </div>
     </div> -->
-    <!-- 2 -->
+
   </div>
 </template>
 
