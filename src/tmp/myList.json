@@ -1,0 +1,19 @@
+{
+    "resultData": [
+      {
+        "label": "토큰",
+        "icon": "pi pi-fw pi-comments",
+        "to": null,
+        "headerNm": null,
+        "items": [
+          {
+            "label": "토큰정보",
+            "icon": null,
+            "to": "/mypro/jeffkim/information",
+            "headerNm": "토큰 > 토큰정보",
+            "items": null
+          }
+        ]
+      }
+    ]
+  }
