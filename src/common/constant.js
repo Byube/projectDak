@@ -1,3 +1,9 @@
+/**
+ * @namespace constant
+ * @description 상수모음
+ * @example constant.url.ONLOGIN ..
+ */
+
 export default {
     key: {
         MAINNET: 'mainNet',
