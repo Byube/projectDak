@@ -141,8 +141,6 @@ const app = createApp(App);
     }
 
     router.beforeEach((to, from, next) => {
-        console.log(to.name);
-        
         next();
     });
 })();

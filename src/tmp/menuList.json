@@ -33,6 +33,13 @@
           "to": "/ethereum/token/lockUp",
           "headerNm": "Token > LockUp",
           "items": null
+        },
+        {
+          "label": "사용자정보",
+          "icon": null,
+          "to": "/userInfomation/detail",
+          "headerNm": null,
+          "items": null
         }
       ]
     },

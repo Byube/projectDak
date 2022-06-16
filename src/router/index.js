@@ -9,6 +9,36 @@ const routes = [
         name: 'dashboard',
         component: () => import('@/views/main/components/Information.vue')
     },
+    {
+        path: '/userInfomation',
+        component: () => import('@/views/mypro/infomation/UserInfomation.vue'),
+        children:[
+            {
+                path:'/userInfomation/detail',
+                component: () => import('@/views/mypro/infomation/info/UserDetail.vue'),
+            },
+            {
+                path:'/userInfomation/address',
+                component: () => import('@/views/mypro/infomation/info/UserAddress.vue'),
+            },
+            {
+                path:'/userInfomation/card',
+                component: () => import('@/views/mypro/infomation/info/UserCard.vue'),
+            }
+        ]
+    },
+    // {
+    //     path:'/userInfomation/detail',
+    //     component: () => import('@/views/mypro/infomation/info/UserDetail.vue'),
+    // },
+    // {
+    //     path:'/userInfomation/address',
+    //     component: () => import('@/views/mypro/infomation/info/UserAddress.vue'),
+    // },
+    // {
+    //     path:'/userInfomation/card',
+    //     component: () => import('@/views/mypro/infomation/info/UserCard.vue'),
+    // }
     
 ];
 

@@ -1,6 +1,6 @@
 <template>
   <div class="layout-topbar">
-    <router-link to="/" class="layout-topbar-logo">
+    <!-- <router-link to="/" class="layout-topbar-logo">
       <img alt="Logo" :src="topbarImage()" />
       <span>JeffKim</span>
     </router-link>
@@ -43,9 +43,9 @@
           <span>Profile</span>
         </button>
       </li>
-    </ul>
+    </ul> -->
 
-    <!-- <div class="w-2">
+    <div class="w-2">
       <div class="flex align-items-center justify-content-start">
         <span>
           <router-link to="/">
@@ -92,7 +92,7 @@
           </Dropdown>
         </div>
       </div>
-    </div> -->
+    </div>
 
   </div>
 </template>
