@@ -7,6 +7,7 @@
           <InputText
             placeholder="우편번호"
             :modelValue="postal"
+            :class="[{ 'p-invalid': isNosearch }]"
             :readonly="true"
           />
           <Button
@@ -22,6 +23,7 @@
             placeholder="주소"
             :modelValue="address"
             class="w-full"
+            :class="[{ 'p-invalid': isNosearch }]"
             :readonly="true"
           />
         </div>
@@ -32,6 +34,7 @@
             placeholder="상세주소"
             v-model:modelValue="detailAddress"
             class="w-full"
+            :class="[{ 'p-invalid': isNoDetail }]"
           />
         </div>
         <!-- 상세주소 -->
@@ -79,7 +82,9 @@ export default {
     const display = ref(false);
     const address = ref("");
     const postal = ref("");
+    const isNosearch = ref(false);
     const detailAddress = ref("");
+    const isNoDetail = ref(false);
     const searchAddress = () => {
       display.value = true;
       console.log("test");
@@ -94,14 +99,18 @@ export default {
       postal.value = response.zonecode;
       display.value = false;
     };
-
     //페이지 이동
     const nextPage = () => {
+      if (!checkValidation()) {
+        return;
+      }
       emit("next-page", {
         formData: {
-          address: address.value,
-          postal: postal.value,
-          detailAddress:detailAddress.value
+          address: {
+            addr1: address.value,
+            addr2: detailAddress.value,
+            postal: postal.value,
+          },
         },
         pageIndex: 1,
       });
@@ -109,15 +118,29 @@ export default {
     const prevPage = () => {
       emit("prev-page", { pageIndex: 1 });
     };
+    const checkValidation = () => {
+    //   if (address.value === "" || postal.value === "") {
+    //     isNosearch.value = true;
+    //     isNoDetail.value = false;
+    //     return false;
+    //   } else if (detailAddress.value === "") {
+    //     isNosearch.value = false;
+    //     isNoDetail.value = true;
+    //     return false;
+    //   }
+      return true;
+    };
     return {
-      searchAddress,
-      oncomplete,
       display,
-      nextPage,
-      prevPage,
       address,
       postal,
       detailAddress,
+      isNosearch,
+      isNoDetail,
+      searchAddress,
+      oncomplete,
+      nextPage,
+      prevPage,
     };
   },
 };
