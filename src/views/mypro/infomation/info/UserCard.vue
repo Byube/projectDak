@@ -53,7 +53,8 @@ export default {
   },
   methods: {
     nextPage() {
-      this.$emit("next-page", {
+    //   this.$emit("next-page", {
+      this.$emit("complete", {
         formData: {
           cardholderName: this.cardholderName,
           cardholderNumber: this.cardholderNumber,

@@ -30,7 +30,7 @@
         <div class="flex mt-3 align-items-center justify-content-start">
           <InputText
             placeholder="상세주소"
-            :modelValue="detailAddress"
+            v-model:modelValue="detailAddress"
             class="w-full"
           />
         </div>
@@ -91,6 +91,7 @@ export default {
       } else {
         address.value = response.jibunAddress;
       }
+      postal.value = response.zonecode;
       display.value = false;
     };
 
@@ -99,6 +100,8 @@ export default {
       emit("next-page", {
         formData: {
           address: address.value,
+          postal: postal.value,
+          detailAddress:detailAddress.value
         },
         pageIndex: 1,
       });

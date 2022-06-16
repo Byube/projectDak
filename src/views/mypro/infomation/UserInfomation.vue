@@ -21,6 +21,19 @@
       </div>
     </div>
   </div>
+  <div>
+    <Dialog
+      header="최종입력 사항"
+      v-model:visible="display"
+      :breakpoints="{ '1080px': '75vw', '720px': '100vw' }"
+      :style="{ width: '30vw' }"
+      :modal="true"
+      class=""
+      :dismissableMask="true"
+    >
+      {{ formObject }}
+    </Dialog>
+  </div>
 </template>
 
 <script>
@@ -39,6 +52,7 @@ export default {
   setup() {
     const router = useRouter();
     const toast = useToast();
+    const display = ref(false);
     const items = ref([
       {
         label: "Detail",
@@ -58,6 +72,7 @@ export default {
     const nextPage = (event) => {
       for (let field in event.formData) {
         formObject.value[field] = event.formData[field];
+        console.log(formObject.value[field]);
       }
       router.push(items.value[event.pageIndex + 1].to);
     };
@@ -75,11 +90,13 @@ export default {
           formObject.value.lastname +
           " your order completed.",
       });
+      display.value = true;
     };
 
     return {
       items,
       formObject,
+      display,
       nextPage,
       prevPage,
       complete,
