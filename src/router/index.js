@@ -15,14 +15,17 @@ const routes = [
         children:[
             {
                 path:'/userInfomation/detail',
+                name:'detail',
                 component: () => import('@/views/mypro/infomation/info/UserDetail.vue'),
             },
             {
                 path:'/userInfomation/address',
+                name:'address',
                 component: () => import('@/views/mypro/infomation/info/UserAddress.vue'),
             },
             {
                 path:'/userInfomation/card',
+                name:'card',
                 component: () => import('@/views/mypro/infomation/info/UserCard.vue'),
             }
         ]

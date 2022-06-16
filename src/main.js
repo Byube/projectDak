@@ -99,10 +99,11 @@ import ProgressSpinner from 'primevue/progressspinner';
 
 import CodeHighlight from './AppCodeHighlight';
 import BlockViewer from './BlockViewer.vue';
+import VueDaumPostcode from 'vue-daum-postcode'
 
 // import constant from '@/common/constant.js';
 // import {writeLocalRoutes} from '@/common/dynamicRoute.js';
-import {writeRoutes} from '@/common/dynamicRoute.js';
+import { writeRoutes } from '@/common/dynamicRoute.js';
 
 console.log(`
 %c     ██╗███████╗███████╗███████╗██╗  ██╗██╗███╗   ███╗
@@ -141,6 +142,14 @@ const app = createApp(App);
     }
 
     router.beforeEach((to, from, next) => {
+        console.log(to.name);
+        console.log(from);
+        if (to.name === 'address' || to.name === 'card') {
+            if (from.fullPath === '/') {
+                next({ path: '/userInfomation/detail' });
+                return;
+            }
+        }
         next();
     });
 })();
@@ -241,5 +250,6 @@ app.component('Row', Row);
 app.component('ProgressSpinner', ProgressSpinner);
 
 app.component('BlockViewer', BlockViewer);
+app.component('VueDaumPostcode', VueDaumPostcode);
 
 app.mount('#app');

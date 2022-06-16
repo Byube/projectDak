@@ -4,7 +4,7 @@
       <div class="h-16rem w-3">
         <!-- 카드 -->
         <div class="field grid">
-          <label for="firstname3" class="col-fixed">Card Number</label>
+          <label for="cardNum" class="col-fixed">Card Number</label>
           <div class="col">
             <InputText v-model:modelValue="cardNum" class="w-full" />
           </div>

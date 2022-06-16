@@ -4,7 +4,7 @@
       <div class="h-16rem w-3">
         <!-- 이름 -->
         <div class="field grid">
-          <label for="firstname3" class="col-fixed" style="width: 100px"
+          <label for="name" class="col-fixed" style="width: 100px"
             >Name</label
           >
           <div class="col">
@@ -14,7 +14,7 @@
         <!-- 이름 -->
         <!-- 핸드폰 -->
         <div class="field grid">
-          <label for="lastname3" class="col-fixed" style="width: 100px"
+          <label for="phone" class="col-fixed" style="width: 100px"
             >Phone</label
           >
           <div class="col">
@@ -24,7 +24,7 @@
         <!-- 핸드폰 -->
         <!-- 이메일 -->
         <div class="field grid">
-          <label for="lastname3" class="col-fixed" style="width: 100px"
+          <label for="email" class="col-fixed" style="width: 100px"
             >Email</label
           >
           <div class="col">
