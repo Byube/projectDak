@@ -1,33 +1,40 @@
 <template>
   <div class="card">
-    <div class="p-fluid">
-      <div class="field">
-        <label for="firstname">Name</label>
-        <InputText
-          id="firstname"
-          v-model="firstname"
-          :class="{ 'p-invalid': validationErrors.firstname && submitted }"
-        ></InputText>
-        <small v-show="validationErrors.firstname && submitted" class="p-error"
-          >Name is required.</small
-        >
-      </div>
-      <div class="field">
-        <label for="lastname">Phone</label>
-        <InputText
-          id="lastname"
-          v-model="lastname"
-          :class="{ 'p-invalid': validationErrors.lastname && submitted }"
-        ></InputText>
-        <small v-show="validationErrors.lastname && submitted" class="p-error"
-          >Phone is required.</small
-        >
-      </div>
-      <div class="field">
-        <label for="age">Email</label>
-        <InputText id="age" v-model="age"></InputText>
+    <div class="flex mt-5 align-items-center justify-content-center">
+      <div class="h-16rem w-3">
+        <!-- 이름 -->
+        <div class="field grid">
+          <label for="firstname3" class="col-fixed" style="width: 100px"
+            >Name</label
+          >
+          <div class="col">
+            <InputText v-model:modelValue="name" class="w-full" />
+          </div>
+        </div>
+        <!-- 이름 -->
+        <!-- 핸드폰 -->
+        <div class="field grid">
+          <label for="lastname3" class="col-fixed" style="width: 100px"
+            >Phone</label
+          >
+          <div class="col">
+            <InputText v-model:modelValue="phone" class="w-full" />
+          </div>
+        </div>
+        <!-- 핸드폰 -->
+        <!-- 이메일 -->
+        <div class="field grid">
+          <label for="lastname3" class="col-fixed" style="width: 100px"
+            >Email</label
+          >
+          <div class="col">
+            <InputText v-model:modelValue="email" class="w-full" />
+          </div>
+        </div>
+        <!-- 이메일 -->
       </div>
     </div>
+    <!-- foot -->
     <div class="grid grid-nogutter justify-content-between">
       <i></i>
       <Button
@@ -37,43 +44,37 @@
         icon-pos="right"
       ></Button>
     </div>
+    <!-- foot -->
   </div>
 </template>
 
 <script>
+import { getCurrentInstance, ref } from "vue";
 export default {
-  data() {
-    return {
-      firstname: "",
-      lastname: "",
-      age: null,
-      submitted: false,
-      validationErrors: {},
+  emits: ["next-page"],
+  setup() {
+    const { emit } = getCurrentInstance();
+    const name = ref("");
+    const phone = ref("");
+    const email = ref("");
+
+    //페이지 이동
+    const nextPage = () => {
+      emit("next-page", {
+        formData: {
+          name: name.value,
+          phone: phone.value,
+          email: email.value,
+        },
+        pageIndex: 0,
+      });
     };
-  },
-  methods: {
-    nextPage() {
-      this.submitted = true;
-      if (this.validateForm()) {
-        this.$emit("next-page", {
-          formData: {
-            firstname: this.firstname,
-            lastname: this.lastname,
-            age: this.age,
-          },
-          pageIndex: 0,
-        });
-      }
-    },
-    validateForm() {
-      if (!this.firstname.trim()) this.validationErrors["firstname"] = true;
-      else delete this.validationErrors["firstname"];
-
-      if (!this.lastname.trim()) this.validationErrors["lastname"] = true;
-      else delete this.validationErrors["lastname"];
-
-      return !Object.keys(this.validationErrors).length;
-    },
+    return {
+      name,
+      phone,
+      email,
+      nextPage,
+    };
   },
 };
 </script>
