@@ -101,8 +101,6 @@ import CodeHighlight from './AppCodeHighlight';
 import BlockViewer from './BlockViewer.vue';
 import VueDaumPostcode from 'vue-daum-postcode'
 
-// import constant from '@/common/constant.js';
-// import {writeLocalRoutes} from '@/common/dynamicRoute.js';
 import { writeRoutes } from '@/common/dynamicRoute.js';
 
 console.log(`
