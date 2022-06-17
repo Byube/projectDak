@@ -30,7 +30,7 @@
         {
           "label": "LockUp",
           "icon": null,
-          "to": "/ethereum/token/lockUp",
+          "to": "/product",
           "headerNm": "Token > LockUp",
           "items": null
         },

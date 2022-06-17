@@ -10,6 +10,7 @@ export default {
         MAINNET_NAME: 'mainNetName',
     },
     url: {
+        GETDATA:'test/app/products.json',
         ONLOGIN: '/',
         LOGINFAIL: '/#/signIn',
         ONLOGOUT: '/signIn',

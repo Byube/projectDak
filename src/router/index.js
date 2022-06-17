@@ -30,10 +30,10 @@ const routes = [
             }
         ]
     },
-    // {
-    //     path:'/userInfomation/detail',
-    //     component: () => import('@/views/mypro/infomation/info/UserDetail.vue'),
-    // },
+    {
+        path:'/product',
+        component: () => import('@/views/mypro/infomation/product/Product.vue'),
+    },
     // {
     //     path:'/userInfomation/address',
     //     component: () => import('@/views/mypro/infomation/info/UserAddress.vue'),
