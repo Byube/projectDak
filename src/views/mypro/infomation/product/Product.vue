@@ -3,11 +3,11 @@
     <DataView
       :value="products"
       :layout="layout"
-      :paginator="true"
-      :rows="9"
       :sortOrder="sortOrder"
       :sortField="sortField"
     >
+      <!-- :paginator="true"
+      :rows="9" -->
       <template #header>
         <div class="grid grid-nogutter">
           <div class="col-6" style="text-align: left">
@@ -15,7 +15,7 @@
               v-model="sortKey"
               :options="sortOptions"
               optionLabel="label"
-              placeholder="Sort By Price"
+              placeholder="Sort By ratingAvg"
               @change="onSortChange($event)"
             />
           </div>
@@ -28,24 +28,35 @@
       <template #list="slotProps">
         <div class="col-12">
           <div class="product-list-item">
-            <img :src="slotProps.data.imageUrl" :alt="slotProps.productTitle" />
+            <!-- <img :src="slotProps.data.imageUrl" :alt="slotProps.data.productTitle" /> -->
+            <img
+              src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
+              :alt="slotProps.data.productTitle"
+            />
             <div class="product-list-detail">
-              <div class="product-name">{{ slotProps.productTitle }}</div>
+              <div class="product-name">{{ slotProps.data.productTitle }}</div>
               <div class="product-description">
-                {{ slotProps }}
+                용량 : {{ slotProps.data.volume }}
               </div>
-              <Rating
-                :modelValue="slotProps.ratingAvg"
-                :readonly="true"
-                :cancel="false"
-              ></Rating>
+              <i class="tooltip">
+                <Rating
+                  :modelValue="slotProps.data.ratingAvg"
+                  :readonly="true"
+                  :cancel="false"
+                />
+                <span class="tooltiptext tooltip-bottom">{{
+                  slotProps.data.ratingAvg
+                }}</span>
+              </i>
               <i class="pi pi-tag product-category-icon"></i
               ><span class="product-category">
                 <!-- {{ slotProps.data.category }} -->
               </span>
             </div>
             <div class="product-list-action">
-              <span class="product-price">${{ slotProps.price }}</span>
+              <span class="product-price">{{
+                formatPrice(slotProps.data.price)
+              }}</span>
               <!-- <Button
                 icon="pi pi-shopping-cart"
                 label="Add to Cart"
@@ -57,7 +68,7 @@
                   slotProps.data.inventoryStatus.toLowerCase()
                 "
               > -->
-                <!-- {{ slotProps.data.inventoryStatus }} -->
+              <!-- {{ slotProps.data.inventoryStatus }} -->
               <!-- </span> -->
             </div>
           </div>
@@ -65,13 +76,13 @@
       </template>
 
       <template #grid="slotProps">
-        <div class="col-12 md:col-12">
+        <div class="col-12 md:col-4">
           <div class="product-grid-item card">
             <div class="product-grid-item-top">
               <div>
                 <i class="pi pi-tag product-category-icon"></i>
                 <span class="product-category">
-                  {{slotProps}}
+                  <!-- {{ slotProps }} -->
                 </span>
               </div>
               <!-- <span
@@ -83,19 +94,31 @@
               > -->
             </div>
             <div class="product-grid-item-content">
-              <img :src="slotProps.data.imageUrl" :alt="slotProps.productTitle" />
-              <div class="product-name">{{ slotProps.productTitle }}</div>
+              <!-- <img :src="slotProps.data.imageUrl" :alt="slotProps.data.productTitle" /> -->
+              <img
+                src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
+                :alt="slotProps.data.productTitle"
+              />
+              <div class="product-name">{{ slotProps.data.productTitle }}</div>
               <div class="product-description">
-                <!-- {{ slotProps.data.description }} -->
+                용량 : {{ slotProps.data.volume }}
               </div>
-              <Rating
-                :modelValue="slotProps.ratingAvg"
-                :readonly="true"
-                :cancel="false"
-              />{{ slotProps.ratingAvg }}
+              <i class="tooltip">
+                <Rating
+                  :modelValue="slotProps.data.ratingAvg"
+                  :readonly="true"
+                  :cancel="false"
+                  class="tooltip"
+                ></Rating>
+                <span class="tooltiptext tooltip-bottom">{{
+                  slotProps.data.ratingAvg
+                }}</span>
+              </i>
             </div>
             <div class="product-grid-item-bottom">
-              <span class="product-price">${{ slotProps.price }}</span>
+              <span class="product-price">{{
+                formatPrice(slotProps.data.price)
+              }}</span>
               <!-- <Button
                 icon="pi pi-shopping-cart"
                 :disabled="slotProps.data.inventoryStatus === 'OUTOFSTOCK'"
@@ -106,19 +129,20 @@
       </template>
     </DataView>
   </div>
-  <div class="card">
-    <Rating :modelValue="val1" :readonly="true" :cancel="false" />{{ val1 }}
-  </div>
 </template>
 
 <script>
 import { ref } from "vue";
+// import VirtualScroller from "primevue/virtualscroller";
 // import { ref, onMounted } from "vue";
 // import ProductService from "../service/ProductService.js";
-import api from "@/api/index.js";
-import constant from '@/common/constant.js'
+import axios from "axios";
+import BigNumber from "bignumber.js";
 
 export default {
+  components: {
+    // VirtualScroller,
+  },
   setup() {
     // onMounted(() => {
     //   productService.value
@@ -126,16 +150,18 @@ export default {
     //     .then((data) => (products.value = data));
     // });
 
+    const basicItems = ref(
+      Array.from({ length: 100000 }).map((_, i) => `Item #${i}`)
+    );
     const products = ref();
     // const productService = ref(new ProductService());
     const layout = ref("grid");
-    const val1 = ref(4.3);
     const sortKey = ref();
     const sortOrder = ref();
     const sortField = ref();
     const sortOptions = ref([
-      { label: "Price High to Low", value: "!price" },
-      { label: "Price Low to High", value: "price" },
+      { label: "ratingAvg High to Low", value: "!ratingAvg" },
+      { label: "ratingAvg Low to High", value: "ratingAvg" },
     ]);
     const onSortChange = (event) => {
       console.log(event.value);
@@ -153,9 +179,18 @@ export default {
       }
     };
     const getUrlData = async () => {
-      let response = await api.get(constant.url.GETDATA);
-      console.log(response.data);
+      let response = await axios.get(
+        "https://s3.ap-northeast-2.amazonaws.com/public.glowday.com/test/app/products.json"
+      );
       products.value = await response.data.products;
+      console.log(response.data.products);
+    };
+    const formatPrice = (price) => {
+      if (price === undefined) {
+        return "정보없음";
+      }
+      console.log(price);
+      return new BigNumber(price).toFormat();
     };
     getUrlData();
     return {
@@ -166,13 +201,52 @@ export default {
       sortField,
       sortOptions,
       onSortChange,
-      val1,
+      basicItems,
+      formatPrice,
     };
   },
 };
 </script>
 
 <style lang="scss" scoped>
+.tooltip {
+  position: relative;
+  display: block;
+}
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 145px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  position: absolute;
+  z-index: 1;
+}
+.tooltip:hover .tooltiptext {
+  visibility: visible;
+}
+/* 툴팁 화살표 기본 스타일 설정 시작 */
+.tooltip .tooltiptext::after {
+  content: " ";
+  position: absolute;
+  border-style: solid;
+  border-width: 5px;
+}
+/* 툴팁 화살표 기본 스타일 설정 끝 */
+.tooltip .tooltip-bottom {
+  width: 145px;
+  top: 150%;
+  left: 50%;
+  margin-left: -60px;
+}
+.tooltip .tooltip-bottom::after {
+  bottom: 100%;
+  left: 45%;
+  margin-left: -5px;
+  border-color: transparent transparent black transparent;
+}
 .card {
   background: #ffffff;
   padding: 2rem;
