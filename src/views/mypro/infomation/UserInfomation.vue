@@ -39,7 +39,7 @@
 <script>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { useToast } from "primevue/usetoast";
+// import { useToast } from "primevue/usetoast";
 import Detail from "@/views/mypro/infomation/info/UserDetail.vue";
 import Address from "@/views/mypro/infomation/info/UserAddress.vue";
 import Payment from "@/views/mypro/infomation/info/UserCard.vue";
@@ -51,7 +51,7 @@ export default {
   },
   setup() {
     const router = useRouter();
-    const toast = useToast();
+    // const toast = useToast();
     const display = ref(false);
     const items = ref([
       {
@@ -79,17 +79,11 @@ export default {
     const prevPage = (event) => {
       router.push(items.value[event.pageIndex - 1].to);
     };
-    const complete = () => {
-      toast.add({
-        severity: "success",
-        summary: "Order submitted",
-        detail:
-          "Dear, " +
-          formObject.value.firstname +
-          " " +
-          formObject.value.lastname +
-          " your order completed.",
-      });
+    const complete = (event) => {
+      for (let field in event.formData) {
+        formObject.value[field] = event.formData[field];
+      }
+      console.log(formObject.value);
       display.value = true;
     };
 
