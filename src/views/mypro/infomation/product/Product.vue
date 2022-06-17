@@ -1,10 +1,86 @@
 <template>
   <div class="card">
+    <h5>Lazy Loading from a Remote Datasource (100000 Rows)</h5>
+    <DataTable
+      :value="products"
+      scrollable
+      scrollHeight="400px"
+      :virtualScrollerOptions="{
+        lazy: true,
+        onLazyLoad: loadCarsLazy,
+        itemSize: 46,
+        delay: 200,
+        showLoader: true,
+        loading: lazyLoading,
+        numToleratedItems: 10,
+      }"
+    >
+      <Column field="idProduct" header="Id" style="min-width: '200px'">
+        <template #loading>
+          <div
+            class="flex align-items-center"
+            :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }"
+          >
+            <Skeleton width="60%" height="1rem" />
+          </div>
+        </template>
+      </Column>
+      <Column
+        field="productTitle"
+        header="ProductTitle"
+        style="min-width: '200px'"
+      >
+        <template #loading>
+          <div
+            class="flex align-items-center"
+            :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }"
+          >
+            <Skeleton width="40%" height="1rem" />
+          </div>
+        </template>
+      </Column>
+      <Column field="year" header="Year" style="min-width: '200px'">
+        <template #loading>
+          <div
+            class="flex align-items-center"
+            :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }"
+          >
+            <Skeleton width="30%" height="1rem" />
+          </div>
+        </template>
+      </Column>
+      <Column field="brand" header="Brand" style="min-width: '200px'">
+        <template #loading>
+          <div
+            class="flex align-items-center"
+            :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }"
+          >
+            <Skeleton width="40%" height="1rem" />
+          </div>
+        </template>
+        <template #body="{ data }">
+          {{ data.brand.brandTitle }}
+        </template>
+      </Column>
+      <Column field="color" header="Color" style="min-width: '200px'">
+        <template #loading>
+          <div
+            class="flex align-items-center"
+            :style="{ height: '17px', 'flex-grow': '1', overflow: 'hidden' }"
+          >
+            <Skeleton width="60%" height="1rem" />
+          </div>
+        </template>
+      </Column>
+    </DataTable>
+  </div>
+  <div class="card">
     <DataView
       :value="products"
       :layout="layout"
       :sortOrder="sortOrder"
       :sortField="sortField"
+      :pageLinkSize="10"
     >
       <!-- :paginator="true"
       :rows="9" -->
@@ -26,7 +102,7 @@
       </template>
 
       <template #list="slotProps">
-        <div class="col-12">
+        <div class="col-6 col-offset-3">
           <div class="product-list-item">
             <!-- <img :src="slotProps.data.imageUrl" :alt="slotProps.data.productTitle" /> -->
             <img
@@ -189,7 +265,6 @@ export default {
       if (price === undefined) {
         return "정보없음";
       }
-      console.log(price);
       return new BigNumber(price).toFormat();
     };
     getUrlData();
