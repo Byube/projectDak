@@ -8,14 +8,14 @@
       :virtualScrollerOptions="{
         lazy: true,
         onLazyLoad: loadCarsLazy,
-        itemSize: 46,
+        itemSize: 40,
         delay: 200,
         showLoader: true,
         loading: lazyLoading,
-        numToleratedItems: 10,
+        numToleratedItems: 5,
       }"
     >
-      <Column field="idProduct" header="Id" style="min-width: '200px'">
+      <Column field="idProduct" header="No." style="min-width: '200px'">
         <template #loading>
           <div
             class="flex align-items-center"
@@ -23,6 +23,9 @@
           >
             <Skeleton width="60%" height="1rem" />
           </div>
+        </template>
+        <template #body="{ index }">
+          {{ index + 1 }}
         </template>
       </Column>
       <Column
@@ -39,7 +42,7 @@
           </div>
         </template>
       </Column>
-      <Column field="year" header="Year" style="min-width: '200px'">
+      <!-- <Column field="year" header="Year" style="min-width: '200px'">
         <template #loading>
           <div
             class="flex align-items-center"
@@ -48,7 +51,7 @@
             <Skeleton width="30%" height="1rem" />
           </div>
         </template>
-      </Column>
+      </Column> -->
       <Column field="brand" header="Brand" style="min-width: '200px'">
         <template #loading>
           <div
@@ -62,7 +65,7 @@
           {{ data.brand.brandTitle }}
         </template>
       </Column>
-      <Column field="color" header="Color" style="min-width: '200px'">
+      <!-- <Column field="color" header="Color" style="min-width: '200px'">
         <template #loading>
           <div
             class="flex align-items-center"
@@ -71,7 +74,7 @@
             <Skeleton width="60%" height="1rem" />
           </div>
         </template>
-      </Column>
+      </Column> -->
     </DataTable>
   </div>
   <div class="card">
@@ -235,6 +238,7 @@ export default {
     const sortKey = ref();
     const sortOrder = ref();
     const sortField = ref();
+    const totalProduct = ref(0);
     const sortOptions = ref([
       { label: "ratingAvg High to Low", value: "!ratingAvg" },
       { label: "ratingAvg Low to High", value: "ratingAvg" },
@@ -259,6 +263,7 @@ export default {
         "https://s3.ap-northeast-2.amazonaws.com/public.glowday.com/test/app/products.json"
       );
       products.value = await response.data.products;
+      totalProduct.value = await response.data.products.length;
       console.log(response.data.products);
     };
     const formatPrice = (price) => {
@@ -266,6 +271,40 @@ export default {
         return "정보없음";
       }
       return new BigNumber(price).toFormat();
+    };
+
+    const virtualCars = ref(Array.from({ length: totalProduct.value }));
+    const lazyLoading = ref(false);
+    const loadLazyTimeout = ref();
+
+    const loadCarsLazy = (event) => {
+      !lazyLoading.value && (lazyLoading.value = true);
+
+      if (loadLazyTimeout.value) {
+        clearTimeout(loadLazyTimeout.value);
+      }
+
+      //simulate remote connection with a timeout
+      loadLazyTimeout.value = setTimeout(() => {
+        let _virtualCars = [...virtualCars.value];
+        let { first, last } = event;
+
+        //load data of required page
+        const loadedCars = products.value.slice(first, last);
+
+        //populate page of virtual cars
+        Array.prototype.splice.apply(_virtualCars, [
+          ...[first, last - first],
+          ...loadedCars,
+        ]);
+
+        virtualCars.value = _virtualCars;
+        lazyLoading.value = false;
+
+        console.log(virtualCars.value);
+
+      // }, Math.random() * 1000 + 250);
+      }, 2000);
     };
     getUrlData();
     return {
@@ -278,6 +317,8 @@ export default {
       onSortChange,
       basicItems,
       formatPrice,
+      loadCarsLazy,
+      lazyLoading,
     };
   },
 };
