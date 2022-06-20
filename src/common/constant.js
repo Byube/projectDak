@@ -56,6 +56,30 @@ export default {
     data: {
         MENULIST: 'menu_list',
         MENUPATH: 'menu_path',
+        SORTDATA: [
+            {
+                name: '평점높은순',
+                code: -1,
+            },
+            {
+                name: '평점낮은순',
+                code: 1,
+            }
+        ],
+        FILTERDATA: [
+            {
+                name: '모두',
+                code: 'all',
+            },
+            {
+                name: '긍정적',
+                code: '긍정적',
+            },
+            {
+                name: '부정적',
+                code: '부정적',
+            }
+        ],
     },
     dialog: {
         MAINNETOWNER: '메인넷 코인 멀티 전송',
