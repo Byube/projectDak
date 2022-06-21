@@ -1,6 +1,10 @@
 <template>
-  <div class="card h-auto">
-    <h5>제품 정보</h5>
+  <div class="card scrollTable" @scroll="test">
+    <ul v-for="item in products" :key="item.key">
+      <li>{{ item.productTitle }}</li>
+    </ul>
+  </div>
+  <!-- <div class="card h-auto">
     <DataTable
       :value="products"
       :sortField="sortRating"
@@ -11,7 +15,9 @@
       showGridlines
       scrollable
       scrollHeight="580px"
-     :rows="10"
+      editMode="row"
+      v-model:editingRows="editingRows"
+      @row-edit-save="onRowEditSave"
     >
       <template #header>
         <TableHeader
@@ -29,11 +35,6 @@
           <Column header="No." field="no" :rowspan="2" />
           <Column header="제품고유ID" field="idProduct" :rowspan="2" />
           <Column header="제품명" field="productTitle" :rowspan="2" />
-          <Column header="제품사진" field="imageUrl" :rowspan="2" />
-          <Column header="제품용량" field="volume" :rowspan="2" />
-          <Column header="제품평점" field="ratingAvg" :rowspan="2" />
-          <Column header="제품평가" field="ratingStatus" :rowspan="2" />
-          <Column header="평가자수" field="reviewCount" :rowspan="2" />
           <Column header="제품가격" field="price" :rowspan="2" />
           <Column header="브랜드정보" :colspan="2" />
         </Row>
@@ -82,102 +83,6 @@
           >
             <Skeleton width="50%" height="1rem" />
           </div>
-        </template>
-      </Column>
-      <Column field="imageUrl" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
-        <template #body="{ data }">
-          <!-- <img
-                :src="data.imageUrl"
-                :alt="data.productTitle"
-                style="width: 100px"
-              /> -->
-          <img
-            src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
-            :alt="data.productTitle"
-            style="width: 80px"
-          />
-        </template>
-      </Column>
-      <Column field="volume" bodyStyle="text-align:end">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
-      </Column>
-      <Column field="ratingAvg" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
-        <template #body="{ data }">
-          <div class="tooltip">
-            <Rating
-              :modelValue="data.ratingAvg"
-              :readonly="true"
-              :cancel="false"
-            />
-            <span class="tooltiptext tooltip-bottom">{{ data.ratingAvg }}</span>
-          </div>
-        </template>
-      </Column>
-      <Column field="ratingStatus" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
-        <template #body="{ data }">
-          <Badge
-            :value="data.ratingStatus"
-            :severity="data.ratingStatus === '긍정적' ? 'success' : 'danger'"
-          ></Badge>
-        </template>
-      </Column>
-      <Column field="reviewCount" bodyStyle="text-align:end">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
-        <template #body="{ data }">
-          {{ formatPrice(data.reviewCount) + " 명" }}
         </template>
       </Column>
       <Column field="price" bodyStyle="text-align:end">
@@ -237,7 +142,7 @@
         </template>
       </Column>
     </DataTable>
-  </div>
+  </div> -->
 </template>
 
 <script>
@@ -245,12 +150,12 @@ import { ref } from "vue";
 // import api from "@/api/index.js";
 import constant from "@/common/constant.js";
 import BigNumber from "bignumber.js";
-import TableHeader from "@/components/Header.vue";
+// import TableHeader from "@/components/Header.vue";
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 import api from "axios";
 export default {
   components: {
-    TableHeader,
+    // TableHeader,
   },
   setup() {
     const products = ref([]);
@@ -281,7 +186,7 @@ export default {
       totalProduct.value = await response.data.products.length;
 
       //필터링 > 3점 이상 긍정, 이하 부정 처리
-      for (let i = 0; i < (await response.data.products.length); i++) {
+      for (let i = 0; i < 10; i++) {
         let element = await response.data.products[i];
         let data = {
           ...element,
@@ -347,8 +252,41 @@ export default {
       getUrlData();
     };
 
-    const test = () => {
-      console.log(' >>>> ');
+    const test = async (e) => {
+      const { scrollHeight, scrollTop, clientHeight } = e.target;
+      console.log(" scrollHeight >>>> ", scrollHeight);
+      console.log(" scrollTop >>>> ", scrollTop);
+      console.log(" clientHeight >>>> ", clientHeight);
+      if (scrollTop > 175) {
+        let response = await api.get(
+          "https://s3.ap-northeast-2.amazonaws.com/public.glowday.com/test/app/products.json"
+        );
+        // let res = [];
+        totalProduct.value = await response.data.products.length;
+
+        //필터링 > 3점 이상 긍정, 이하 부정 처리
+        for (let i = 10; i < 20; i++) {
+          let element = await response.data.products[i];
+          let data = {
+            ...element,
+            ratingStatus: element.ratingAvg > 3 ? "긍정적" : "부정적",
+          };
+          await products.value.push(data);
+        }
+        // console.log(res);
+        // products.value = await {
+        //   ...products.value,
+        //   ...res
+        // }
+
+        
+      }
+    };
+
+    const items = ref([]);
+
+    for (let i = 0; i < 100; i++) {
+      items.value.push({ name: "테스트 " + i, key: i });
     }
 
     return {
@@ -358,10 +296,11 @@ export default {
       sortRatingAvg,
       filterRatingAvg,
       filters,
+      items,
       formatPrice,
       searchKeyword,
       initFilter,
-      test
+      test,
     };
   },
 };
@@ -409,7 +348,7 @@ export default {
 .scrollTable {
   width: 100%;
   overflow: hidden;
-  height: 750px;
+  height: 200px;
   &::-webkit-scrollbar {
     display: none;
   }
