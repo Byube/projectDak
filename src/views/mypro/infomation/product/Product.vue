@@ -1,5 +1,5 @@
 <template>
-  <div class="card">
+  <div class="card h-auto">
     <h5>제품 정보</h5>
     <DataTable
       :value="products"
@@ -9,8 +9,16 @@
       :defaultSortOrder="-1"
       :rowHover="true"
       showGridlines
-      :rows="10"
-      :paginator="true"
+      scrollable
+      scrollHeight="580px"
+      :virtualScrollerOptions="{
+        delay: 200,
+        showLoader: true,
+        itemSize: 50,
+        style:'height: 50px',
+        numToleratedItems: 10
+      }"
+      @scroll="test"
     >
       <template #header>
         <TableHeader
@@ -25,69 +33,20 @@
 
       <ColumnGroup type="header">
         <Row>
-          <Column
-            header="No."
-            field="no"
-            :rowspan="2"
-            headerStyle="width: 5%"
-          />
-          <Column
-            header="제품고유ID"
-            field="idProduct"
-            :rowspan="2"
-            headerStyle="width: 10%"
-          />
-          <Column
-            header="제품명"
-            field="productTitle"
-            :rowspan="2"
-            headerStyle="width: 10%"
-          />
-          <Column
-            header="제품사진"
-            field="imageUrl"
-            :rowspan="2"
-            headerStyle="width: 10%"
-          />
-          <Column
-            header="제품용량"
-            field="volume"
-            :rowspan="2"
-            headerStyle="width: 5%"
-          />
-          <Column
-            header="제품평점"
-            field="ratingAvg"
-            :rowspan="2"
-            headerStyle="width: 10%"
-          />
-          <Column
-            header="제품평가"
-            field="ratingStatus"
-            :rowspan="2"
-            headerStyle="width: 10%"
-          />
-          <Column
-            header="평가자수"
-            field="reviewCount"
-            :rowspan="2"
-            headerStyle="width: 10%"
-          />
-          <Column
-            header="제품가격"
-            field="price"
-            :rowspan="2"
-            headerStyle="width: 10%"
-          />
+          <Column header="No." field="no" :rowspan="2" />
+          <Column header="제품고유ID" field="idProduct" :rowspan="2" />
+          <Column header="제품명" field="productTitle" :rowspan="2" />
+          <Column header="제품사진" field="imageUrl" :rowspan="2" />
+          <Column header="제품용량" field="volume" :rowspan="2" />
+          <Column header="제품평점" field="ratingAvg" :rowspan="2" />
+          <Column header="제품평가" field="ratingStatus" :rowspan="2" />
+          <Column header="평가자수" field="reviewCount" :rowspan="2" />
+          <Column header="제품가격" field="price" :rowspan="2" />
           <Column header="브랜드정보" :colspan="2" />
         </Row>
         <Row>
-          <Column header="브랜드명" field="brand" headerStyle="width: 10%" />
-          <Column
-            header="브랜드사진"
-            field="brandImg"
-            headerStyle="width: 10%"
-          />
+          <Column header="브랜드명" field="brand" />
+          <Column header="브랜드사진" field="brandImg" />
         </Row>
       </ColumnGroup>
       <Column field="no" bodyStyle="text-align:center">
@@ -106,9 +65,44 @@
           <span>{{ index + 1 }}</span>
         </template>
       </Column>
-      <Column field="idProduct" bodyStyle="text-align:center" />
-      <Column field="productTitle" bodyStyle="text-align:center" />
+      <Column field="idProduct" bodyStyle="text-align:center">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
+      </Column>
+      <Column field="productTitle" bodyStyle="text-align:center">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
+      </Column>
       <Column field="imageUrl" bodyStyle="text-align:center">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
         <template #body="{ data }">
           <!-- <img
                 :src="data.imageUrl"
@@ -118,12 +112,35 @@
           <img
             src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
             :alt="data.productTitle"
-            style="width: 100px"
+            style="width: 80px"
           />
         </template>
       </Column>
-      <Column field="volume" bodyStyle="text-align:end" />
+      <Column field="volume" bodyStyle="text-align:end">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
+      </Column>
       <Column field="ratingAvg" bodyStyle="text-align:center">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
         <template #body="{ data }">
           <div class="tooltip">
             <Rating
@@ -136,6 +153,17 @@
         </template>
       </Column>
       <Column field="ratingStatus" bodyStyle="text-align:center">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
         <template #body="{ data }">
           <Badge
             :value="data.ratingStatus"
@@ -144,11 +172,33 @@
         </template>
       </Column>
       <Column field="reviewCount" bodyStyle="text-align:end">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
         <template #body="{ data }">
           {{ formatPrice(data.reviewCount) + " 명" }}
         </template>
       </Column>
       <Column field="price" bodyStyle="text-align:end">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
         <template #body="{ data }">
           {{
             formatPrice(data.price) === "정보없음"
@@ -158,11 +208,33 @@
         </template>
       </Column>
       <Column field="brand" bodyStyle="text-align:center">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
         <template #body="{ data }">
           {{ data.brand.brandTitle }}
         </template>
       </Column>
       <Column field="brandImg" bodyStyle="text-align:center">
+        <template #loading>
+          <div
+            :style="{
+              height: '17px',
+              'flex-grow': '1',
+              overflow: 'hidden',
+            }"
+          >
+            <Skeleton width="50%" height="1rem" />
+          </div>
+        </template>
         <template #body="{ data }">
           <img
             :src="data.brand.imageUrl"
@@ -182,7 +254,6 @@ import constant from "@/common/constant.js";
 import BigNumber from "bignumber.js";
 import TableHeader from "@/components/Header.vue";
 import { FilterMatchMode, FilterOperator } from "primevue/api";
-
 import api from "axios";
 export default {
   components: {
@@ -283,6 +354,10 @@ export default {
       getUrlData();
     };
 
+    const test = (v) => {
+      console.log(v);
+    }
+
     return {
       products,
       sortRating,
@@ -293,6 +368,7 @@ export default {
       formatPrice,
       searchKeyword,
       initFilter,
+      test
     };
   },
 };
