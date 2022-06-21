@@ -35,6 +35,8 @@
     "prismjs": "1.9.0",
     "vue": "3.2.25",
     "vue-daum-postcode": "^1.1.0",
+    "vue-infinite-loading": "^2.4.5",
+    "vue-infinite-scroll": "^2.0.2",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.2",
     "vuex-persistedstate": "^4.1.0",

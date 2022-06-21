@@ -102,6 +102,7 @@ import BlockViewer from './BlockViewer.vue';
 import VueDaumPostcode from 'vue-daum-postcode'
 
 import { writeRoutes } from '@/common/dynamicRoute.js';
+import infiniteScroll from 'vue-infinite-scroll';
 
 console.log(`
 %c     ██╗███████╗███████╗███████╗██╗  ██╗██╗███╗   ███╗
@@ -165,6 +166,7 @@ app.directive('ripple', Ripple);
 app.directive('code', CodeHighlight);
 app.directive('badge', BadgeDirective);
 app.directive('styleclass', StyleClass);
+app.directive('infiniteScroll', {infiniteScroll});
 
 app.component('Accordion', Accordion);
 app.component('AccordionTab', AccordionTab);

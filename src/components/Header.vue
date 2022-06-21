@@ -1,7 +1,7 @@
 <template>
   <div class="grid">
     <div class="col-12">
-      <div class="card mt-5 mb-0 keep-all justify-center">
+      <div class="card justify-center">
         <div class="flex">
           <div
             class="
@@ -10,9 +10,7 @@
               justify-content-center
               font-bold
               text-white
-              m-2
-              px-5
-              py-3
+              ml-3
               border-round
             "
           >
@@ -31,7 +29,7 @@
               justify-content-center
               font-bold
               text-white
-              py-3
+              ml-3
               border-round
             "
           >
@@ -51,8 +49,7 @@
               justify-content-center
               font-bold
               text-white
-              m-2
-              py-3
+              ml-3
               border-round
             "
           >
@@ -72,7 +69,7 @@
               justify-content-center
               font-bold
               text-white
-              py-3
+              ml-3
               border-round
             "
           >
@@ -97,7 +94,7 @@
 </template>
 <script>
 import { ref, getCurrentInstance } from "@vue/runtime-core";
-import { debounce } from 'lodash';
+import { debounce } from "lodash";
 export default {
   props: {
     sortRatingAvg: {
@@ -117,7 +114,7 @@ export default {
     //최종 검색
     const searchKeyword = (no) => {
       emit("search", {
-        no:no,
+        no: no,
         sort: selectSortRating.value,
         filter: selectFilterRating.value,
         keywords: keyword.value.trim(),
@@ -134,11 +131,11 @@ export default {
 
     //입력과 동시에 실행
     const realTimeSearch = debounce((v) => {
-        if(v.trim().length >= 2){
-            keyword.value = v.trim();
-            searchKeyword(2);
-        }
-    }, 1000) 
+      if (v.trim().length >= 2) {
+        keyword.value = v.trim();
+        searchKeyword(2);
+      }
+    }, 1000);
 
     return {
       selectSortRating,
