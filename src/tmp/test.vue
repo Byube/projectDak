@@ -1,10 +1,10 @@
 <template>
-  <div class="card scrollTable" @scroll="test">
+  <!-- <div class="card scrollTable" @scroll="test">
     <ul v-for="item in products" :key="item.key">
       <li>{{ item.productTitle }}</li>
     </ul>
-  </div>
-  <!-- <div class="card h-auto">
+  </div> -->
+  <div class="card">
     <DataTable
       :value="products"
       :sortField="sortRating"
@@ -13,11 +13,6 @@
       :defaultSortOrder="-1"
       :rowHover="true"
       showGridlines
-      scrollable
-      scrollHeight="580px"
-      editMode="row"
-      v-model:editingRows="editingRows"
-      @row-edit-save="onRowEditSave"
     >
       <template #header>
         <TableHeader
@@ -142,7 +137,7 @@
         </template>
       </Column>
     </DataTable>
-  </div> -->
+  </div>
 </template>
 
 <script>
@@ -150,12 +145,12 @@ import { ref } from "vue";
 // import api from "@/api/index.js";
 import constant from "@/common/constant.js";
 import BigNumber from "bignumber.js";
-// import TableHeader from "@/components/Header.vue";
+import TableHeader from "@/components/Header.vue";
 import { FilterMatchMode, FilterOperator } from "primevue/api";
 import api from "axios";
 export default {
   components: {
-    // TableHeader,
+    TableHeader,
   },
   setup() {
     const products = ref([]);
@@ -252,12 +247,20 @@ export default {
       getUrlData();
     };
 
+    document.addEventListener("scroll", (e) => {
+      const { scrollHeight, scrollTop, clientHeight } = e.target.scrollingElement;
+      console.log(" e >>>> ", e);
+      console.log(" scrollHeight >>>> ", scrollHeight);
+      console.log(" scrollTop >>>> ", scrollTop);
+      console.log(" clientHeight >>>> ", clientHeight);
+    });
+
     const test = async (e) => {
       const { scrollHeight, scrollTop, clientHeight } = e.target;
       console.log(" scrollHeight >>>> ", scrollHeight);
       console.log(" scrollTop >>>> ", scrollTop);
       console.log(" clientHeight >>>> ", clientHeight);
-      if (scrollTop > 175) {
+      if (scrollTop > 175 && products.value.length < 20) {
         let response = await api.get(
           "https://s3.ap-northeast-2.amazonaws.com/public.glowday.com/test/app/products.json"
         );
@@ -278,8 +281,40 @@ export default {
         //   ...products.value,
         //   ...res
         // }
+      } else if (scrollTop > 495 && products.value.length < 30) {
+        let response = await api.get(
+          "https://s3.ap-northeast-2.amazonaws.com/public.glowday.com/test/app/products.json"
+        );
+        // let res = [];
+        totalProduct.value = await response.data.products.length;
 
-        
+        //필터링 > 3점 이상 긍정, 이하 부정 처리
+        for (let i = 20; i < 30; i++) {
+          let element = await response.data.products[i];
+          let data = {
+            ...element,
+            ratingStatus: element.ratingAvg > 3 ? "긍정적" : "부정적",
+          };
+          await products.value.push(data);
+        }
+      } else if (scrollTop > 815 && products.value.length < 40) {
+        let response = await api.get(
+          "https://s3.ap-northeast-2.amazonaws.com/public.glowday.com/test/app/products.json"
+        );
+        // let res = [];
+        totalProduct.value = await response.data.products.length;
+
+        console.log(response.data.products);
+
+        //필터링 > 3점 이상 긍정, 이하 부정 처리
+        for (let i = 30; i < (await response.data.products.length); i++) {
+          let element = await response.data.products[i];
+          let data = {
+            ...element,
+            ratingStatus: element.ratingAvg > 3 ? "긍정적" : "부정적",
+          };
+          await products.value.push(data);
+        }
       }
     };
 
