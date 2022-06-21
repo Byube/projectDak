@@ -1,5 +1,5 @@
 <template>
-  <div class="card h-auto">
+  <div class="card">
     <h5>제품 정보</h5>
     <DataTable
       :value="products"
@@ -9,9 +9,6 @@
       :defaultSortOrder="-1"
       :rowHover="true"
       showGridlines
-      scrollable
-      scrollHeight="580px"
-     :rows="10"
     >
       <template #header>
         <TableHeader
@@ -26,20 +23,69 @@
 
       <ColumnGroup type="header">
         <Row>
-          <Column header="No." field="no" :rowspan="2" />
-          <Column header="제품고유ID" field="idProduct" :rowspan="2" />
-          <Column header="제품명" field="productTitle" :rowspan="2" />
-          <Column header="제품사진" field="imageUrl" :rowspan="2" />
-          <Column header="제품용량" field="volume" :rowspan="2" />
-          <Column header="제품평점" field="ratingAvg" :rowspan="2" />
-          <Column header="제품평가" field="ratingStatus" :rowspan="2" />
-          <Column header="평가자수" field="reviewCount" :rowspan="2" />
-          <Column header="제품가격" field="price" :rowspan="2" />
+          <Column
+            header="No."
+            field="no"
+            :rowspan="2"
+            headerStyle="width: 5%"
+          />
+          <Column
+            header="제품고유ID"
+            field="idProduct"
+            :rowspan="2"
+            headerStyle="width: 10%"
+          />
+          <Column
+            header="제품명"
+            field="productTitle"
+            :rowspan="2"
+            headerStyle="width: 10%"
+          />
+          <Column
+            header="제품사진"
+            field="imageUrl"
+            :rowspan="2"
+            headerStyle="width: 10%"
+          />
+          <Column
+            header="제품용량"
+            field="volume"
+            :rowspan="2"
+            headerStyle="width: 5%"
+          />
+          <Column
+            header="제품평점"
+            field="ratingAvg"
+            :rowspan="2"
+            headerStyle="width: 10%"
+          />
+          <Column
+            header="제품평가"
+            field="ratingStatus"
+            :rowspan="2"
+            headerStyle="width: 10%"
+          />
+          <Column
+            header="평가자수"
+            field="reviewCount"
+            :rowspan="2"
+            headerStyle="width: 10%"
+          />
+          <Column
+            header="제품가격"
+            field="price"
+            :rowspan="2"
+            headerStyle="width: 10%"
+          />
           <Column header="브랜드정보" :colspan="2" />
         </Row>
         <Row>
-          <Column header="브랜드명" field="brand" />
-          <Column header="브랜드사진" field="brandImg" />
+          <Column header="브랜드명" field="brand" headerStyle="width: 10%" />
+          <Column
+            header="브랜드사진"
+            field="brandImg"
+            headerStyle="width: 10%"
+          />
         </Row>
       </ColumnGroup>
       <Column field="no" bodyStyle="text-align:center">
@@ -58,82 +104,19 @@
           <span>{{ index + 1 }}</span>
         </template>
       </Column>
-      <Column field="idProduct" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
-      </Column>
-      <Column field="productTitle" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
-      </Column>
+      <Column field="idProduct" bodyStyle="text-align:center" />
+      <Column field="productTitle" bodyStyle="text-align:center" />
       <Column field="imageUrl" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
         <template #body="{ data }">
-          <!-- <img
-                :src="data.imageUrl"
-                :alt="data.productTitle"
-                style="width: 100px"
-              /> -->
           <img
-            src="https://www.primefaces.org/wp-content/uploads/2020/05/placeholder.png"
+            :src="data.imageUrl"
             :alt="data.productTitle"
-            style="width: 80px"
+            style="width: 100px"
           />
         </template>
       </Column>
-      <Column field="volume" bodyStyle="text-align:end">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
-      </Column>
+      <Column field="volume" bodyStyle="text-align:end" />
       <Column field="ratingAvg" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
         <template #body="{ data }">
           <div class="tooltip">
             <Rating
@@ -146,17 +129,6 @@
         </template>
       </Column>
       <Column field="ratingStatus" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
         <template #body="{ data }">
           <Badge
             :value="data.ratingStatus"
@@ -165,33 +137,11 @@
         </template>
       </Column>
       <Column field="reviewCount" bodyStyle="text-align:end">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
         <template #body="{ data }">
           {{ formatPrice(data.reviewCount) + " 명" }}
         </template>
       </Column>
       <Column field="price" bodyStyle="text-align:end">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
         <template #body="{ data }">
           {{
             formatPrice(data.price) === "정보없음"
@@ -201,33 +151,11 @@
         </template>
       </Column>
       <Column field="brand" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
         <template #body="{ data }">
           {{ data.brand.brandTitle }}
         </template>
       </Column>
       <Column field="brandImg" bodyStyle="text-align:center">
-        <template #loading>
-          <div
-            :style="{
-              height: '17px',
-              'flex-grow': '1',
-              overflow: 'hidden',
-            }"
-          >
-            <Skeleton width="50%" height="1rem" />
-          </div>
-        </template>
         <template #body="{ data }">
           <img
             :src="data.brand.imageUrl"
@@ -242,12 +170,12 @@
 
 <script>
 import { ref } from "vue";
-// import api from "@/api/index.js";
+import api from "@/api/index.js";
 import constant from "@/common/constant.js";
 import BigNumber from "bignumber.js";
 import TableHeader from "@/components/Header.vue";
 import { FilterMatchMode, FilterOperator } from "primevue/api";
-import api from "axios";
+
 export default {
   components: {
     TableHeader,
@@ -273,24 +201,24 @@ export default {
 
     //api 연동 데이터 가져오기
     const getUrlData = async () => {
-      // let response = await api.get(constant.url.GETDATA);
-      let response = await api.get(
-        "https://s3.ap-northeast-2.amazonaws.com/public.glowday.com/test/app/products.json"
-      );
-      let res = [];
-      totalProduct.value = await response.data.products.length;
+      try {
+        let response = await api.get(constant.url.GETDATA);
+        let res = [];
+        totalProduct.value = await response.data.products.length;
 
-      //필터링 > 3점 이상 긍정, 이하 부정 처리
-      for (let i = 0; i < (await response.data.products.length); i++) {
-        let element = await response.data.products[i];
-        let data = {
-          ...element,
-          ratingStatus: element.ratingAvg > 3 ? "긍정적" : "부정적",
-        };
-        await res.push(data);
+        //필터링 > 3점 이상 긍정, 이하 부정 처리
+        for (let i = 0; i < 10; i++) {
+          let element = await response.data.products[i];
+          let data = {
+            ...element,
+            ratingStatus: element.ratingAvg > 3 ? "긍정적" : "부정적",
+          };
+          await res.push(data);
+        }
+        products.value = await res;
+      } catch (error) {
+        console.log(error);
       }
-      console.log(res);
-      products.value = await res;
     };
     getUrlData();
 
@@ -304,6 +232,7 @@ export default {
 
     //검색 기능
     const searchKeyword = (searchKey) => {
+      getUrlData();
       switch (searchKey.no) {
         case 0:
           sortOrder.value = searchKey.sort;
@@ -324,8 +253,6 @@ export default {
         default:
           break;
       }
-      console.log(searchKey);
-      // sortOrder.value = 1;
     };
 
     //검색 초기화
@@ -347,9 +274,39 @@ export default {
       getUrlData();
     };
 
-    const test = () => {
-      console.log(' >>>> ');
-    }
+    //인피니트 스크롤 부분
+    document.addEventListener("scroll", async (e) => {
+      const { scrollTop } = e.target.scrollingElement;
+      //스크롤 밑바닥 체크
+      let bottom =
+        document.documentElement.scrollHeight -
+        document.documentElement.offsetHeight;
+      let response = await api.get(constant.url.GETDATA);
+      //스크롤 bottom 도착 하면 값 10개 추가 호출
+      if (
+        scrollTop === bottom &&
+        products.value.length < (await response.data.products.length)
+      ) {
+        await getMoreData(response);
+      }
+    });
+
+    const getMoreData = async (response) => {
+      let index = products.value.length;
+      let total =
+        products.value.length / 10 + 1 <
+        (await response.data.products.length) / 10
+          ? products.value.length + 10
+          : await response.data.products.length;
+      for (let i = index; i < total; i++) {
+        let element = await response.data.products[i];
+        let data = {
+          ...element,
+          ratingStatus: element.ratingAvg > 3 ? "긍정적" : "부정적",
+        };
+        await products.value.push(data);
+      }
+    };
 
     return {
       products,
@@ -361,7 +318,6 @@ export default {
       formatPrice,
       searchKeyword,
       initFilter,
-      test
     };
   },
 };
@@ -405,14 +361,5 @@ export default {
   left: 45%;
   margin-left: -5px;
   border-color: transparent transparent black transparent;
-}
-.scrollTable {
-  width: 100%;
-  overflow: hidden;
-  height: 750px;
-  &::-webkit-scrollbar {
-    display: none;
-  }
-  overflow-y: auto;
 }
 </style>
